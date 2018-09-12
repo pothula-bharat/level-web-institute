@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<title>Level Web Institute</title>
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans:200,400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--<link rel="stylesheet" href="css/demo.css">-->
+<link rel="stylesheet" href="css/uikit.css">
+</head>
+
+<body>
+<header class="logo">Logo here</header>
+<main class="container-sidebyside"> 
+  <!-- Carousal Section -->
+  <div class="carousal-section">
+    <h2>Hello world</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam adipisci, perspiciatis dolore sequi expedita corrupti sapiente. Quisquam in natus nam incidunt modi corporis sint unde voluptatibus! Quaerat, magnam minima in?</p>
+    <div class="indicator-container"> <span class="indicator filled"></span> <span class="indicator"></span> <span class="indicator"></span> <span class="indicator"></span> </div>
+  </div>
+  <!-- Form Section -->
+  <div class="form-section">
+    <header class="form-section__header"> Level Web Institute </header>
+    <div class="center-align">
+      <form action="" method="" class="form-container">
+        <div class="input">
+          <label for="username" class="input__label">Username</label>
+          <input type="text" name="username" id="username" placeholder="INS-12D91A0569" class="input__box">
+        </div>
+        <div class="input">
+          <label for="password" class="input__label">Password</label>
+          <a class="inline-button" href="#">Forgot Password?</a>
+          <input type="password" name="password" id="password" placeholder="something@123" class="input__box">
+          <span class="text-button">Show</span> 
+          <span class="error-message">Invalid Username or password</span>
+        </div>
+        <button class="button disabled">Sign in</button>
+      </form>
+    </div>
+    <footer>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms &amp; Conditions</a></li>
+      </ul>
+    </footer>
+  </div>
+</main>
+</body>
+<script>
+    
+    const password = document.querySelector("[type='password']"),
+          textButton = document.querySelector(".text-button"),
+          url = "http://dev-dolevel.mroads.com:8080/level/signIn",
+          username = document.querySelector("#username"),
+          button = document.querySelector(".button");
+    
+    
+    textButton.addEventListener("click", ()=>{
+        
+        if(password.type == "password") { 
+            password.type = "input";
+            textButton.textContent = "Hide";
+        }
+        else { 
+            password.type = "password";
+            textButton.textContent = "Show";
+        }
+        
+    });
+    
+    password.addEventListener("blur",checkStatus);
+    username.addEventListener("blur",checkStatus);
+    
+    function checkStatus(){
+        if( username.value.length > 0 && password.value.length > 0 ) button.classList.remove("disabled");
+    }
+    
+    
+    button.addEventListener("click", function(e) {
+        
+                            e.preventDefault();
+        console.log("clicked");
+       
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange=function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let data = JSON.parse(this.responseText);
+                console.log(data);
+                if ( true ) 
+                 document.querySelector(".error-message").style.display = "inline-block";
+            }
+        };
+    
+    
+        xhttp.open("POST", url, true);
+        xhttp.setRequestHeader("Accept", "application/json");
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(JSON.stringify(eval({ userName: username.value ,password: password.value })));
+                        
+    });
+    
+    
+    </script>
+</html>

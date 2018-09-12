@@ -1,0 +1,256 @@
+/* CSS Document */
+* {
+  outline: none;
+  box-shadow: none;
+  border: none; }
+
+/* ==========================================================================
+   Layout Styles
+   ========================================================================== */
+body {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 15vw auto;
+  grid-template-rows: 80px 1fr;
+  background-color: #fafafa;
+  font-family: 'Fira Sans',sans-serif; }
+
+header {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  background-color: white;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5) !important;
+  padding: 24px;
+  font-size: 18px;
+  line-height: 1.5; }
+
+main {
+  background-color: #fafafa;
+  padding: 24px; }
+
+aside {
+  grid-column: 1 / 1;
+  background-color: white;
+  grid-row: 1 / span 2;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5);
+  padding: 80px 0 0 24px; }
+
+/* ==========================================================================
+   Notification Styles
+   ========================================================================== */
+.notification-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; }
+
+.create-notification-button {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white; }
+
+.create-notification-button,
+.notification {
+  min-height: 220px;
+  min-width: 220px;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5);
+  margin-right: 24px;
+  margin-bottom: 24px; }
+
+.notification {
+  background-color: white;
+  min-width: 220px;
+  max-width: 360px;
+  padding: 16px; }
+
+.notification__header {
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.22px;
+  font-weight: 500;
+  margin-bottom: 16px; }
+
+.notification__content {
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.22px;
+  font-weight: 400;
+  margin-bottom: 24px; }
+
+.notification__undertext, .notification__date {
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.17px;
+  font-weight: 400;
+  margin-bottom: 8px; }
+
+.notification__date {
+  margin-bottom: 0; }
+
+/* ==========================================================================
+   Icon Styles
+   ========================================================================== */
+.material-icons {
+  display: block;
+  margin-bottom: 24px;
+  font-size: 32px;
+  font-weight: 200; }
+
+.svg-icon {
+  display: inline-block;
+  margin-right: 16px; }
+
+/* ==========================================================================
+   Navigation Styles
+   ========================================================================== */
+.navigation__links {
+  font-size: 16px;
+  letter-spacing: 0.19px;
+  display: block;
+  background-color: white;
+  padding: 22px 24px;
+  text-decoration: none;
+  color: #9B9B9B; }
+
+.navigation__links a {
+  color: #9B9B9B;
+  text-decoration: none; }
+
+.navigation__links.active a {
+  color: #4A4A4A; }
+
+.navigation__links.active {
+  background-color: #fafafa; }
+
+/* ==========================================================================
+   Overlay Styles
+   ========================================================================== */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.67);
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.create-notification {
+  height: 856px;
+  width: 780px;
+  background-color: #fafafa;
+  border-radius: 4px; }
+
+.form {
+  padding: 0 24px; }
+
+.create-notification header {
+  text-align: center;
+  margin-bottom: 24px; }
+
+/* ==========================================================================
+   Input Styles
+   ========================================================================== */
+.select-box {
+  margin-bottom: 24px; }
+
+.select-box label,
+select,
+.textarea label {
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  color: #4a4a4a;
+  letter-spacing: 0.22px; }
+
+.select-box label,
+.textarea label {
+  margin-bottom: 8px; }
+
+.select-box select {
+  outline: none;
+  border: none;
+  background-color: linear-gradient(0% white, 100% white);
+  font-weight: 500;
+  color: black; }
+
+.select-outline {
+  border: 1px solid #979797;
+  display: block;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 4px;
+  background-color: white; }
+
+textarea {
+  width: calc( 100% - 24px );
+  border: 1px solid #979797;
+  resize: vertical;
+  font-size: 18px;
+  line-height: 1.5;
+  height: 108px;
+  border-radius: 4px;
+  letter-spacing: 0.22px;
+  padding: 12px; }
+
+.fileupload {
+  display: block;
+  border: 1px solid #979797;
+  padding: 16px;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.22px;
+  text-align: center;
+  background-color: white; }
+
+.fileupload:hover,
+button:hover {
+  cursor: pointer; }
+
+#fileUpload {
+  appearance: none;
+  display: none; }
+
+button {
+  display: block;
+  background-color: cornflowerblue;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.22px;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  width: 100%;
+  padding: 16px;
+  margin-top: 24px; }
+
+/* ==========================================================================
+   Date picker Styles
+   ========================================================================== */
+.date-container {
+  display: flex; }
+
+.date-picker {
+  min-width: 320px; }
+
+.date-picker label {
+  display: block;
+  font-size: 18px;
+  color: #4A4A4A;
+  letter-spacing: 0.22px;
+  margin-bottom: 8px;
+  font-weight: 500; }
+
+.date-picker input {
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 4px;
+  border: 1px solid #979797; }
+
+/*# sourceMappingURL=trial.css.map */
