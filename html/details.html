@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+    <script>( sessionStorage.getItem("institutionId") )?console.info("session exists") : location="../index.html";</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Session Details</title>
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../scss/trial.css">
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans:200,400,500,700" rel="stylesheet">
+</head>
+
+<body>
+<header class="header"> Session Details </header>
+<main class="full-width">
+  <section class="table-section">
+    <header>
+      <h3>Showing list of <span class="tutor">Raghu</span> Session</h3>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>Topic Name</th>
+          <th>Student Name</th>
+          <th>Session Date</th>
+          <th>Session Duration</th>
+          <th>Session Mode</th>
+          <th>Session Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </section>
+</main>
+<nav>
+  <ul>
+    <li class="navigation__links active"><a href="#">Notifications</a></li>
+  </ul>
+</nav>
+<div class="overlay" style="display: none;">
+  <div class="create-notification">
+    <header>Create Notification</header>
+    <form class="form">
+      <div class="select-box">
+        <label>Type of notification</label>
+        <div class="select-outline">
+          <select name="" id="">
+            <option value="">Ready</option>
+            <option value="">Deserted</option>
+            <option value="">Limping</option>
+            <option value="">Hallowed</option>
+          </select>
+        </div>
+      </div>
+      <div class="select-box">
+        <label>Type of notification</label>
+        <div class="select-outline">
+          <select name="" id="">
+            <option value="">Ready</option>
+            <option value="">Deserted</option>
+            <option value="">Limping</option>
+            <option value="">Hallowed</option>
+          </select>
+        </div>
+      </div>
+      <div class="date-container">
+        <div class="date-picker">
+          <label for="">From Date</label>
+          <input type="date" id="Datepicker1">
+        </div>
+        <div class="date-picker">
+          <label for="">To Date</label>
+          <input type="date" id="Datepicker2">
+        </div>
+      </div>
+      <div class="input-box">
+        <label for="">Subject</label>
+        <input type="text">
+      </div>
+      <div class="textarea">
+        <label for="">Description</label>
+        <textarea name="" id=""></textarea>
+      </div>
+      <div class="input-box">
+        <label for="fileUpload" class="fileupload">Upload file (optional)</label>
+        <input type="file" id="fileUpload">
+      </div>
+      <button>Publish Notification</button>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+    
+    const url = 'http://dev-dolevel.mroads.com:8080/level/getNotificationsSent',
+          tmpUrl = "";
+    
+    let data = [];
+    
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange=function() {
+    if (this.readyState == 4 && this.status == 200) {
+      data = JSON.parse(this.responseText);
+    console.log(data);
+        
+        const tbody = document.querySelector("tbody"),
+              tutor = document.querySelector(".tutor");
+        
+        tutor.innerHTML = data[0].tutorName;
+    
+    tbody.innerHTML = "";
+    
+    for(let slice of data) {
+        
+        if ( Object.getOwnPropertyNames(slice).length != 0 )
+        tbody.innerHTML = tbody.innerHTML + `<tr><td>${slice.topicName}</td><td>${slice.studentName}</td><td>${slice.topicName}</td><td>${(slice.duration) == undefined ? "NA": slice.duration}</td><td>${slice.topicName}</td><td>${slice.statusOfSession}</td>`
+    }
+    }
+  };
+    
+    
+    //xhttp.open("POST", url, true);
+    xhttp.open("GET"," https://dev-dolevel.mroads.com/institute/getSessionsOfTutor?lvlUserId=346");
+    xhttp.setRequestHeader("Accept", "application/json");
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    
+    //xhttp.send(JSON.stringify({"classId":1,"studentId":1}));
+    
+    
+//    let data = [ 
+//         {
+//        "tutorName": "Kavya Katooru",
+//        "studentName": "Suchitra Reddy",
+//        "topicName": "Change Of Variables",
+//        "subjectName": "Advanced Calculus",
+//        "sessionStatus": 6,
+//        "endTime": 1529398115974,
+//        "statusOfSession": "Session Completed",
+//        "duration": "80 Minutes",
+//        "amount": 1
+//    },
+//    {
+//        "tutorName": "Kavya Katooru",
+//        "studentName": "Aditya Vns",
+//        "topicName": "Lagrange's Mean Value Theorem Cauchy's Mean Value Theorem",
+//        "subjectName": "Advanced Calculus",
+//        "sessionStatus": 4,
+//        "statusOfSession": "Session Cancelled",
+//        "amount": 0
+//    }, 
+//    {
+//        
+//    }
+//    ];
+    
+//    const logout = document.querySelector(".logout");
+//    
+//    logout.addEventListener("click", function(e){
+//        
+//        e.preventDefault();
+//        sessionStorage.clear();
+//        
+//        ( sessionStorage.getItem("institutionId") )?console.info("session exists") : location="/index.html";
+//        
+//    });
+    
+    
+
+</script>
+</body>
+</html>

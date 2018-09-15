@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en-IN">
+    <head>
+        
+    <script>
+        
+        ( sessionStorage.getItem("institutionId") )?console.info("session exists") : location="../index.html";
+            
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dakshah Tutor List</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../scss/trial.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:200,400,500,700" rel="stylesheet">
+    </head>
+
+    <body>
+<header class="header"> Home </header>
+<main>
+      <section class="card-section">
+    <header>
+          <h3>List of tutors</h3>
+        </header>
+    <div class="card-container"> </div>
+  </section>
+    </main>
+<nav>
+      <ul>
+    <li class="navigation__links active"><a href="#">Home</a></li>
+  </ul>
+    </nav>
+<aside>
+      <button class="cta">Add Tutor</button>
+    </aside>
+<div class="overlay" style="">
+      <div class="create-notification">
+    <header>Add Tutor</header>
+    <form class="form">
+          <div class="input-box">
+        <label for="email">Email id</label>
+        <input type="text" id="email" placeholder="someone@example.com">
+        <span class="status">Status message here</span> <span class="message">*Email should be the one that is used to login with the level application</span> </div>
+          <button class="button">Add Tutor</button>
+        </form>
+  </div>
+    </div>
+<script type="text/javascript">
+    
+    //institution id here
+    
+    const url = 'https://dev-dolevel.mroads.com/institute/instituteTutorsList?institutionId=100';
+    
+    let cardContainer = document.querySelector(".card-container"),
+        data = [];
+    
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange=function() {
+    if (this.readyState == 4 && this.status == 200) {
+        data = JSON.parse(this.responseText);
+        
+           for(let slice of data){
+        
+        if( slice.topics.length > 0 ) {
+            
+            for(let slice2 of slice.topics)
+            
+            cardContainer.innerHTML += `<div class="card" data-topicId = "${slice2.topicId}" data-userId = "${slice.lvlUserId}"><div class="avatar"><img src="${slice.profilePictureLink}" alt=""></div><h4>${slice.lvlUserName}</h4><p>${slice2.subjectName}</p></div>`;
+            
+        }
+        
+    }
+        
+    }
+  };
+    
+    
+    xhttp.open("GET", url);
+    xhttp.setRequestHeader("Accept", "application/json");
+    xhttp.setRequestHeader("Content-type", "application/json")
+    xhttp.send();
+    //xhttp.send(JSON.stringify({"classId":1,"studentId":1}));
+    
+    
+    const cta = document.querySelector(".cta"),
+          overlay = document.querySelector(".overlay"),
+          modal = document.querySelector(".create-notification");
+    
+    cta.addEventListener("click", function() {
+        
+        overlay.classList.toggle("fadeIn");
+        modal.classList.toggle("slideUpandReveal");
+    });
+    
+    overlay.addEventListener("click", function() {
+        this.classList.toggle("fadeIn"); 
+        modal.classList.toggle("slideUpandReveal");
+    });
+
+
+</script>
+</body>
+</html>
